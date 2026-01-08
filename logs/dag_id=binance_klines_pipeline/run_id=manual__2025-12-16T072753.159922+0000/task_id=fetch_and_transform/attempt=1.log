@@ -1,0 +1,33 @@
+[2025-12-16T07:27:55.015+0000] {logging_mixin.py:188} INFO - Changing /opt/***/logs/dag_id=binance_klines_pipeline/run_id=manual__2025-12-16T07:27:53.159922+00:00/task_id=fetch_and_transform permission to 509
+[2025-12-16T07:27:55.073+0000] {logging_mixin.py:188} INFO - Changing /opt/***/logs/dag_id=binance_klines_pipeline/run_id=manual__2025-12-16T07:27:53.159922+00:00/task_id=fetch_and_transform permission to 509
+[2025-12-16T07:27:55.168+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: binance_klines_pipeline.fetch_and_transform manual__2025-12-16T07:27:53.159922+00:00 [queued]>
+[2025-12-16T07:27:55.184+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: binance_klines_pipeline.fetch_and_transform manual__2025-12-16T07:27:53.159922+00:00 [queued]>
+[2025-12-16T07:27:55.185+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2025-12-16T07:27:55.205+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): fetch_and_transform> on 2025-12-16 07:27:53.159922+00:00
+[2025-12-16T07:27:55.211+0000] {standard_task_runner.py:60} INFO - Started process 266 to run task
+[2025-12-16T07:27:55.215+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'binance_klines_pipeline', 'fetch_and_transform', 'manual__2025-12-16T07:27:53.159922+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/dag.py', '--cfg-path', '/tmp/tmpo7gy0sqp']
+[2025-12-16T07:27:55.219+0000] {standard_task_runner.py:88} INFO - Job 3: Subtask fetch_and_transform
+[2025-12-16T07:27:55.295+0000] {logging_mixin.py:188} INFO - Changing /opt/***/logs/dag_id=binance_klines_pipeline/run_id=manual__2025-12-16T07:27:53.159922+00:00/task_id=fetch_and_transform permission to 509
+[2025-12-16T07:27:55.319+0000] {task_command.py:423} INFO - Running <TaskInstance: binance_klines_pipeline.fetch_and_transform manual__2025-12-16T07:27:53.159922+00:00 [running]> on host 09d11c10e543
+[2025-12-16T07:27:58.493+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='binance_klines_pipeline' AIRFLOW_CTX_TASK_ID='fetch_and_transform' AIRFLOW_CTX_EXECUTION_DATE='2025-12-16T07:27:53.159922+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-12-16T07:27:53.159922+00:00'
+[2025-12-16T07:27:58.554+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag.py", line 17, in task_fetch_and_transform
+    raw = fetch(symbol, interval, start_time, end_time)
+  File "/opt/airflow/pipelines/fetch.py", line 44, in fetch
+    session.mount("https://", SSLAdapter(max_retries=retries))
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/adapters.py", line 155, in __init__
+    self.init_poolmanager(pool_connections, pool_maxsize, block=pool_block)
+  File "/opt/airflow/pipelines/fetch.py", line 28, in init_poolmanager
+    return super().init_poolmanager(*args, **kwargs)
+TypeError: init_poolmanager() got multiple values for argument 'maxsize'
+[2025-12-16T07:27:58.579+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=binance_klines_pipeline, task_id=fetch_and_transform, execution_date=20251216T072753, start_date=20251216T072755, end_date=20251216T072758
+[2025-12-16T07:27:58.594+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 3 for task fetch_and_transform (init_poolmanager() got multiple values for argument 'maxsize'; 266)
+[2025-12-16T07:27:58.636+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-12-16T07:27:58.669+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

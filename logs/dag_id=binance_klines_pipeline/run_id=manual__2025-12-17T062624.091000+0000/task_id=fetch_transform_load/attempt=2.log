@@ -1,0 +1,28 @@
+[2025-12-17T06:31:29.101+0000] {logging_mixin.py:188} INFO - Changing /opt/airflow/logs/dag_id=binance_klines_pipeline/run_id=manual__2025-12-17T06:26:24.091000+00:00/task_id=fetch_transform_load permission to 509
+[2025-12-17T06:31:29.242+0000] {logging_mixin.py:188} INFO - Changing /opt/airflow/logs/dag_id=binance_klines_pipeline/run_id=manual__2025-12-17T06:26:24.091000+00:00/task_id=fetch_transform_load permission to 509
+[2025-12-17T06:31:29.342+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: binance_klines_pipeline.fetch_transform_load manual__2025-12-17T06:26:24.091000+00:00 [queued]>
+[2025-12-17T06:31:29.363+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: binance_klines_pipeline.fetch_transform_load manual__2025-12-17T06:26:24.091000+00:00 [queued]>
+[2025-12-17T06:31:29.364+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 3
+[2025-12-17T06:31:29.383+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): fetch_transform_load> on 2025-12-17 06:26:24.091000+00:00
+[2025-12-17T06:31:29.390+0000] {standard_task_runner.py:60} INFO - Started process 269 to run task
+[2025-12-17T06:31:29.394+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'binance_klines_pipeline', 'fetch_transform_load', 'manual__2025-12-17T06:26:24.091000+00:00', '--job-id', '33', '--raw', '--subdir', 'DAGS_FOLDER/dag.py', '--cfg-path', '/tmp/tmp6g_67cm0']
+[2025-12-17T06:31:29.401+0000] {standard_task_runner.py:88} INFO - Job 33: Subtask fetch_transform_load
+[2025-12-17T06:31:29.661+0000] {logging_mixin.py:188} INFO - Changing /opt/airflow/logs/dag_id=binance_klines_pipeline/run_id=manual__2025-12-17T06:26:24.091000+00:00/task_id=fetch_transform_load permission to 509
+[2025-12-17T06:31:29.673+0000] {task_command.py:423} INFO - Running <TaskInstance: binance_klines_pipeline.fetch_transform_load manual__2025-12-17T06:26:24.091000+00:00 [running]> on host e090f72fc900
+[2025-12-17T06:31:30.006+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='binance_klines_pipeline' AIRFLOW_CTX_TASK_ID='fetch_transform_load' AIRFLOW_CTX_EXECUTION_DATE='2025-12-17T06:26:24.091000+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-12-17T06:26:24.091000+00:00'
+[2025-12-17T06:31:30.476+0000] {logging_mixin.py:188} INFO - Database connection successful.
+[2025-12-17T06:31:30.482+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag.py", line 27, in fetch_transform_load
+    raw = fetch_daily(symbol, interval, start, end)
+TypeError: fetch_daily() takes 2 positional arguments but 4 were given
+[2025-12-17T06:31:30.544+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=binance_klines_pipeline, task_id=fetch_transform_load, execution_date=20251217T062624, start_date=20251217T063129, end_date=20251217T063130
+[2025-12-17T06:31:30.572+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 33 for task fetch_transform_load (fetch_daily() takes 2 positional arguments but 4 were given; 269)
+[2025-12-17T06:31:30.604+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-12-17T06:31:30.802+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

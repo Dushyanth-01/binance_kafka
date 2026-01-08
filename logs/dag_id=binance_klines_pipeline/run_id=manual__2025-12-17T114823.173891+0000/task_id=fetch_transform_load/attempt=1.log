@@ -1,0 +1,100 @@
+[2025-12-17T11:48:24.943+0000] {logging_mixin.py:188} INFO - Changing /opt/airflow/logs/dag_id=binance_klines_pipeline/run_id=manual__2025-12-17T11:48:23.173891+00:00/task_id=fetch_transform_load permission to 509
+[2025-12-17T11:48:25.120+0000] {logging_mixin.py:188} INFO - Changing /opt/airflow/logs/dag_id=binance_klines_pipeline/run_id=manual__2025-12-17T11:48:23.173891+00:00/task_id=fetch_transform_load permission to 509
+[2025-12-17T11:48:25.260+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: binance_klines_pipeline.fetch_transform_load manual__2025-12-17T11:48:23.173891+00:00 [queued]>
+[2025-12-17T11:48:25.282+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: binance_klines_pipeline.fetch_transform_load manual__2025-12-17T11:48:23.173891+00:00 [queued]>
+[2025-12-17T11:48:25.283+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2025-12-17T11:48:25.303+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): fetch_transform_load> on 2025-12-17 11:48:23.173891+00:00
+[2025-12-17T11:48:25.310+0000] {standard_task_runner.py:60} INFO - Started process 218 to run task
+[2025-12-17T11:48:25.314+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'binance_klines_pipeline', 'fetch_transform_load', 'manual__2025-12-17T11:48:23.173891+00:00', '--job-id', '69', '--raw', '--subdir', 'DAGS_FOLDER/dag.py', '--cfg-path', '/tmp/tmpj_ptn7qa']
+[2025-12-17T11:48:25.317+0000] {standard_task_runner.py:88} INFO - Job 69: Subtask fetch_transform_load
+[2025-12-17T11:48:25.541+0000] {logging_mixin.py:188} INFO - Changing /opt/airflow/logs/dag_id=binance_klines_pipeline/run_id=manual__2025-12-17T11:48:23.173891+00:00/task_id=fetch_transform_load permission to 509
+[2025-12-17T11:48:25.555+0000] {task_command.py:423} INFO - Running <TaskInstance: binance_klines_pipeline.fetch_transform_load manual__2025-12-17T11:48:23.173891+00:00 [running]> on host 511bb853f070
+[2025-12-17T11:48:26.200+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='binance_klines_pipeline' AIRFLOW_CTX_TASK_ID='fetch_transform_load' AIRFLOW_CTX_EXECUTION_DATE='2025-12-17T11:48:23.173891+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-12-17T11:48:23.173891+00:00'
+[2025-12-17T11:48:26.687+0000] {logging_mixin.py:188} INFO - Processing execution_date: 2025-12-17
+[2025-12-17T11:48:26.760+0000] {logging_mixin.py:188} INFO - Database connection successful.
+[2025-12-17T11:48:27.188+0000] {logging_mixin.py:188} INFO - Data validation passed.
+[2025-12-17T11:48:27.316+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedColumn: column "number_of_trades" of relation "binance_klines" does not exist
+LINE 12:             number_of_trades = EXCLUDED.num_trades,
+                     ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag.py", line 31, in fetch_transform_load
+    load(
+  File "/opt/airflow/pipelines/fetch.py", line 130, in load
+    conn.execute(text(upsert_sql))
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1385, in execute
+    return meth(self, multiparams, params, _EMPTY_EXECUTION_OPTS)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1577, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column "number_of_trades" of relation "binance_klines" does not exist
+LINE 12:             number_of_trades = EXCLUDED.num_trades,
+                     ^
+
+[SQL: 
+        INSERT INTO binance_klines
+        SELECT * FROM binance_klines
+        ON CONFLICT (symbol, interval, open_time)
+        DO UPDATE SET
+            open = EXCLUDED.open,
+            high = EXCLUDED.high,
+            low = EXCLUDED.low,
+            close = EXCLUDED.close,
+            volume = EXCLUDED.volume,
+            quote_volume = EXCLUDED.quote_volume,
+            number_of_trades = EXCLUDED.num_trades,
+            close_time = EXCLUDED.close_time,
+            taker_buy_base = EXCLUDED.taker_buy_base,
+            taker_buy_quote = EXCLUDED.taker_buy_quote;
+    ]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+[2025-12-17T11:48:27.393+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=binance_klines_pipeline, task_id=fetch_transform_load, execution_date=20251217T114823, start_date=20251217T114825, end_date=20251217T114827
+[2025-12-17T11:48:27.423+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 69 for task fetch_transform_load ((psycopg2.errors.UndefinedColumn) column "number_of_trades" of relation "binance_klines" does not exist
+LINE 12:             number_of_trades = EXCLUDED.num_trades,
+                     ^
+
+[SQL: 
+        INSERT INTO binance_klines
+        SELECT * FROM binance_klines
+        ON CONFLICT (symbol, interval, open_time)
+        DO UPDATE SET
+            open = EXCLUDED.open,
+            high = EXCLUDED.high,
+            low = EXCLUDED.low,
+            close = EXCLUDED.close,
+            volume = EXCLUDED.volume,
+            quote_volume = EXCLUDED.quote_volume,
+            number_of_trades = EXCLUDED.num_trades,
+            close_time = EXCLUDED.close_time,
+            taker_buy_base = EXCLUDED.taker_buy_base,
+            taker_buy_quote = EXCLUDED.taker_buy_quote;
+    ]
+(Background on this error at: https://sqlalche.me/e/14/f405); 218)
+[2025-12-17T11:48:27.463+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-12-17T11:48:27.544+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

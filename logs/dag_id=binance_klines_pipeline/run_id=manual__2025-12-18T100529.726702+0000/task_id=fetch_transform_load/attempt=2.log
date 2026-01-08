@@ -1,0 +1,112 @@
+[2025-12-18T10:10:35.871+0000] {logging_mixin.py:188} INFO - Changing /opt/airflow/logs/dag_id=binance_klines_pipeline/run_id=manual__2025-12-18T10:05:29.726702+00:00/task_id=fetch_transform_load permission to 509
+[2025-12-18T10:10:36.057+0000] {logging_mixin.py:188} INFO - Changing /opt/airflow/logs/dag_id=binance_klines_pipeline/run_id=manual__2025-12-18T10:05:29.726702+00:00/task_id=fetch_transform_load permission to 509
+[2025-12-18T10:10:36.199+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: binance_klines_pipeline.fetch_transform_load manual__2025-12-18T10:05:29.726702+00:00 [queued]>
+[2025-12-18T10:10:36.220+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: binance_klines_pipeline.fetch_transform_load manual__2025-12-18T10:05:29.726702+00:00 [queued]>
+[2025-12-18T10:10:36.221+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 3
+[2025-12-18T10:10:36.244+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): fetch_transform_load> on 2025-12-18 10:05:29.726702+00:00
+[2025-12-18T10:10:36.253+0000] {standard_task_runner.py:60} INFO - Started process 389 to run task
+[2025-12-18T10:10:36.256+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'binance_klines_pipeline', 'fetch_transform_load', 'manual__2025-12-18T10:05:29.726702+00:00', '--job-id', '82', '--raw', '--subdir', 'DAGS_FOLDER/dag.py', '--cfg-path', '/tmp/tmp_5kycg2j']
+[2025-12-18T10:10:36.259+0000] {standard_task_runner.py:88} INFO - Job 82: Subtask fetch_transform_load
+[2025-12-18T10:10:36.622+0000] {logging_mixin.py:188} INFO - Changing /opt/airflow/logs/dag_id=binance_klines_pipeline/run_id=manual__2025-12-18T10:05:29.726702+00:00/task_id=fetch_transform_load permission to 509
+[2025-12-18T10:10:36.634+0000] {task_command.py:423} INFO - Running <TaskInstance: binance_klines_pipeline.fetch_transform_load manual__2025-12-18T10:05:29.726702+00:00 [running]> on host ac9eae46d86e
+[2025-12-18T10:10:37.075+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='binance_klines_pipeline' AIRFLOW_CTX_TASK_ID='fetch_transform_load' AIRFLOW_CTX_EXECUTION_DATE='2025-12-18T10:05:29.726702+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-12-18T10:05:29.726702+00:00'
+[2025-12-18T10:10:37.407+0000] {logging_mixin.py:188} INFO - Processing execution_date: 2025-12-18
+[2025-12-18T10:10:37.481+0000] {logging_mixin.py:188} INFO - Database connection successful.
+[2025-12-18T10:10:38.136+0000] {logging_mixin.py:188} INFO - Data validation passed.
+[2025-12-18T10:10:38.153+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.InvalidColumnReference: there is no unique or exclusion constraint matching the ON CONFLICT specification
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag.py", line 31, in fetch_transform_load
+    load(
+  File "/opt/airflow/pipelines/fetch.py", line 160, in load
+    conn.execute(upsert_sql, records)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1385, in execute
+    return meth(self, multiparams, params, _EMPTY_EXECUTION_OPTS)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1577, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.InvalidColumnReference) there is no unique or exclusion constraint matching the ON CONFLICT specification
+
+[SQL: 
+        INSERT INTO binance_klines (
+            symbol, interval, open_time, open, high, low, close,
+            volume, close_time, quote_volume, num_trades,
+            taker_buy_base, taker_buy_quote
+        )
+        VALUES (
+            %(symbol)s, %(interval)s, %(open_time)s, %(open)s, %(high)s, %(low)s, %(close)s,
+            %(volume)s, %(close_time)s, %(quote_volume)s, %(num_trades)s,
+            %(taker_buy_base)s, %(taker_buy_quote)s
+        )
+        ON CONFLICT (symbol, interval, open_time)
+        DO UPDATE SET
+            open = EXCLUDED.open,
+            high = EXCLUDED.high,
+            low = EXCLUDED.low,
+            close = EXCLUDED.close,
+            volume = EXCLUDED.volume,
+            quote_volume = EXCLUDED.quote_volume,
+            num_trades = EXCLUDED.num_trades,
+            close_time = EXCLUDED.close_time,
+            taker_buy_base = EXCLUDED.taker_buy_base,
+            taker_buy_quote = EXCLUDED.taker_buy_quote;
+    ]
+[parameters: {'symbol': 'BTCUSDT', 'interval': '1d', 'open_time': Timestamp('2025-12-18 00:00:00'), 'open': 86243.23, 'high': 87439.8, 'low': 85863.93, 'close': 87400.0, 'volume': 4647.81611, 'close_time': Timestamp('2025-12-18 23:59:59.999000'), 'quote_volume': 402934088.6972767, 'num_trades': 1350064, 'taker_buy_base': 2284.16354, 'taker_buy_quote': 198067880.8077798}]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+[2025-12-18T10:10:38.215+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=binance_klines_pipeline, task_id=fetch_transform_load, execution_date=20251218T100529, start_date=20251218T101036, end_date=20251218T101038
+[2025-12-18T10:10:38.243+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 82 for task fetch_transform_load ((psycopg2.errors.InvalidColumnReference) there is no unique or exclusion constraint matching the ON CONFLICT specification
+
+[SQL: 
+        INSERT INTO binance_klines (
+            symbol, interval, open_time, open, high, low, close,
+            volume, close_time, quote_volume, num_trades,
+            taker_buy_base, taker_buy_quote
+        )
+        VALUES (
+            %(symbol)s, %(interval)s, %(open_time)s, %(open)s, %(high)s, %(low)s, %(close)s,
+            %(volume)s, %(close_time)s, %(quote_volume)s, %(num_trades)s,
+            %(taker_buy_base)s, %(taker_buy_quote)s
+        )
+        ON CONFLICT (symbol, interval, open_time)
+        DO UPDATE SET
+            open = EXCLUDED.open,
+            high = EXCLUDED.high,
+            low = EXCLUDED.low,
+            close = EXCLUDED.close,
+            volume = EXCLUDED.volume,
+            quote_volume = EXCLUDED.quote_volume,
+            num_trades = EXCLUDED.num_trades,
+            close_time = EXCLUDED.close_time,
+            taker_buy_base = EXCLUDED.taker_buy_base,
+            taker_buy_quote = EXCLUDED.taker_buy_quote;
+    ]
+[parameters: {'symbol': 'BTCUSDT', 'interval': '1d', 'open_time': Timestamp('2025-12-18 00:00:00'), 'open': 86243.23, 'high': 87439.8, 'low': 85863.93, 'close': 87400.0, 'volume': 4647.81611, 'close_time': Timestamp('2025-12-18 23:59:59.999000'), 'quote_volume': 402934088.6972767, 'num_trades': 1350064, 'taker_buy_base': 2284.16354, 'taker_buy_quote': 198067880.8077798}]
+(Background on this error at: https://sqlalche.me/e/14/f405); 389)
+[2025-12-18T10:10:38.282+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-12-18T10:10:38.355+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

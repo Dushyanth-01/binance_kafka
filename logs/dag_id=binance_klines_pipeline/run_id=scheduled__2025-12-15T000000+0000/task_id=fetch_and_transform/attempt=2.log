@@ -1,0 +1,187 @@
+[2025-12-16T06:24:37.728+0000] {logging_mixin.py:188} INFO - Changing /opt/***/logs/dag_id=binance_klines_pipeline/run_id=scheduled__2025-12-15T00:00:00+00:00/task_id=fetch_and_transform permission to 509
+[2025-12-16T06:24:37.971+0000] {logging_mixin.py:188} INFO - Changing /opt/***/logs/dag_id=binance_klines_pipeline/run_id=scheduled__2025-12-15T00:00:00+00:00/task_id=fetch_and_transform permission to 509
+[2025-12-16T06:24:38.169+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: binance_klines_pipeline.fetch_and_transform scheduled__2025-12-15T00:00:00+00:00 [queued]>
+[2025-12-16T06:24:38.199+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: binance_klines_pipeline.fetch_and_transform scheduled__2025-12-15T00:00:00+00:00 [queued]>
+[2025-12-16T06:24:38.203+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 2
+[2025-12-16T06:24:38.247+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): fetch_and_transform> on 2025-12-15 00:00:00+00:00
+[2025-12-16T06:24:38.262+0000] {standard_task_runner.py:60} INFO - Started process 257 to run task
+[2025-12-16T06:24:38.270+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'binance_klines_pipeline', 'fetch_and_transform', 'scheduled__2025-12-15T00:00:00+00:00', '--job-id', '54', '--raw', '--subdir', 'DAGS_FOLDER/dag.py', '--cfg-path', '/tmp/tmpdnho4jvp']
+[2025-12-16T06:24:38.278+0000] {standard_task_runner.py:88} INFO - Job 54: Subtask fetch_and_transform
+[2025-12-16T06:24:38.495+0000] {logging_mixin.py:188} INFO - Changing /opt/***/logs/dag_id=binance_klines_pipeline/run_id=scheduled__2025-12-15T00:00:00+00:00/task_id=fetch_and_transform permission to 509
+[2025-12-16T06:24:38.549+0000] {task_command.py:423} INFO - Running <TaskInstance: binance_klines_pipeline.fetch_and_transform scheduled__2025-12-15T00:00:00+00:00 [running]> on host ad5b53e8ec24
+[2025-12-16T06:24:39.008+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='binance_klines_pipeline' AIRFLOW_CTX_TASK_ID='fetch_and_transform' AIRFLOW_CTX_EXECUTION_DATE='2025-12-15T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-12-15T00:00:00+00:00'
+[2025-12-16T06:24:42.390+0000] {connectionpool.py:824} WARNING - Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:1131)'))': /api/v3/klines?symbol=BTCUSDT&interval=1h&startTime=1704067200001&endTime=1717200000000&limit=1000
+[2025-12-16T06:24:44.496+0000] {connectionpool.py:824} WARNING - Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:1131)'))': /api/v3/klines?symbol=BTCUSDT&interval=1h&startTime=1704067200001&endTime=1717200000000&limit=1000
+[2025-12-16T06:24:48.651+0000] {connectionpool.py:824} WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:1131)'))': /api/v3/klines?symbol=BTCUSDT&interval=1h&startTime=1704067200001&endTime=1717200000000&limit=1000
+[2025-12-16T06:24:56.864+0000] {connectionpool.py:824} WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:1131)'))': /api/v3/klines?symbol=BTCUSDT&interval=1h&startTime=1704067200001&endTime=1717200000000&limit=1000
+[2025-12-16T06:25:13.146+0000] {connectionpool.py:824} WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:1131)'))': /api/v3/klines?symbol=BTCUSDT&interval=1h&startTime=1704067200001&endTime=1717200000000&limit=1000
+[2025-12-16T06:25:13.421+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 715, in urlopen
+    httplib_response = self._make_request(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 404, in _make_request
+    self._validate_conn(conn)
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 1058, in _validate_conn
+    conn.connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connection.py", line 419, in connect
+    self.sock = ssl_wrap_socket(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/util/ssl_.py", line 449, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/util/ssl_.py", line 493, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "/usr/local/lib/python3.8/ssl.py", line 500, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/usr/local/lib/python3.8/ssl.py", line 1073, in _create
+    self.do_handshake()
+  File "/usr/local/lib/python3.8/ssl.py", line 1342, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLZeroReturnError: TLS/SSL connection has been closed (EOF) (_ssl.c:1131)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 827, in urlopen
+    return self.urlopen(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 827, in urlopen
+    return self.urlopen(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 827, in urlopen
+    return self.urlopen(
+  [Previous line repeated 2 more times]
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 799, in urlopen
+    retries = retries.increment(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/util/retry.py", line 592, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/klines?symbol=BTCUSDT&interval=1h&startTime=1704067200001&endTime=1717200000000&limit=1000 (Caused by SSLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:1131)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag.py", line 17, in task_fetch_and_transform
+    raw = fetch(symbol, interval, start_time, end_time)
+  File "/opt/airflow/pipelines/fetch.py", line 33, in fetch
+    response = session.get(
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/adapters.py", line 517, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/klines?symbol=BTCUSDT&interval=1h&startTime=1704067200001&endTime=1717200000000&limit=1000 (Caused by SSLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:1131)')))
+[2025-12-16T06:25:13.570+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=binance_klines_pipeline, task_id=fetch_and_transform, execution_date=20251215T000000, start_date=20251216T062438, end_date=20251216T062513
+[2025-12-16T06:25:13.662+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 54 for task fetch_and_transform (HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/klines?symbol=BTCUSDT&interval=1h&startTime=1704067200001&endTime=1717200000000&limit=1000 (Caused by SSLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:1131)'))); 257)
+[2025-12-16T06:25:13.719+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-12-16T06:25:13.790+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-12-16T07:05:01.984+0000] {logging_mixin.py:188} INFO - Changing /opt/***/logs/dag_id=binance_klines_pipeline/run_id=scheduled__2025-12-15T00:00:00+00:00/task_id=fetch_and_transform permission to 509
+[2025-12-16T07:05:02.057+0000] {logging_mixin.py:188} INFO - Changing /opt/***/logs/dag_id=binance_klines_pipeline/run_id=scheduled__2025-12-15T00:00:00+00:00/task_id=fetch_and_transform permission to 509
+[2025-12-16T07:05:02.195+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: binance_klines_pipeline.fetch_and_transform scheduled__2025-12-15T00:00:00+00:00 [queued]>
+[2025-12-16T07:05:02.217+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: binance_klines_pipeline.fetch_and_transform scheduled__2025-12-15T00:00:00+00:00 [queued]>
+[2025-12-16T07:05:02.219+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 2
+[2025-12-16T07:05:02.250+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): fetch_and_transform> on 2025-12-15 00:00:00+00:00
+[2025-12-16T07:05:02.260+0000] {standard_task_runner.py:60} INFO - Started process 266 to run task
+[2025-12-16T07:05:02.266+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'binance_klines_pipeline', 'fetch_and_transform', 'scheduled__2025-12-15T00:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/dag.py', '--cfg-path', '/tmp/tmp0f_0ljrt']
+[2025-12-16T07:05:02.272+0000] {standard_task_runner.py:88} INFO - Job 5: Subtask fetch_and_transform
+[2025-12-16T07:05:02.368+0000] {logging_mixin.py:188} INFO - Changing /opt/***/logs/dag_id=binance_klines_pipeline/run_id=scheduled__2025-12-15T00:00:00+00:00/task_id=fetch_and_transform permission to 509
+[2025-12-16T07:05:02.388+0000] {task_command.py:423} INFO - Running <TaskInstance: binance_klines_pipeline.fetch_and_transform scheduled__2025-12-15T00:00:00+00:00 [running]> on host 9e7fd801a507
+[2025-12-16T07:05:03.840+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='binance_klines_pipeline' AIRFLOW_CTX_TASK_ID='fetch_and_transform' AIRFLOW_CTX_EXECUTION_DATE='2025-12-15T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-12-15T00:00:00+00:00'
+[2025-12-16T07:05:04.077+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 715, in urlopen
+    httplib_response = self._make_request(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 404, in _make_request
+    self._validate_conn(conn)
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 1058, in _validate_conn
+    conn.connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connection.py", line 419, in connect
+    self.sock = ssl_wrap_socket(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/util/ssl_.py", line 449, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/util/ssl_.py", line 493, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "/usr/local/lib/python3.8/ssl.py", line 500, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/usr/local/lib/python3.8/ssl.py", line 1073, in _create
+    self.do_handshake()
+  File "/usr/local/lib/python3.8/ssl.py", line 1342, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLZeroReturnError: TLS/SSL connection has been closed (EOF) (_ssl.c:1131)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 799, in urlopen
+    retries = retries.increment(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/util/retry.py", line 592, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/klines?symbol=BTCUSDT&interval=1h&startTime=1704067200000&endTime=1717200000000&limit=1000 (Caused by SSLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:1131)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag.py", line 17, in task_fetch_and_transform
+    raw = fetch(symbol, interval, start_time, end_time)
+  File "/opt/airflow/pipelines/fetch.py", line 43, in fetch
+    response = session.get(
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/adapters.py", line 517, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/klines?symbol=BTCUSDT&interval=1h&startTime=1704067200000&endTime=1717200000000&limit=1000 (Caused by SSLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:1131)')))
+[2025-12-16T07:05:04.108+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=binance_klines_pipeline, task_id=fetch_and_transform, execution_date=20251215T000000, start_date=20251216T070502, end_date=20251216T070504
+[2025-12-16T07:05:04.130+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 5 for task fetch_and_transform (HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/klines?symbol=BTCUSDT&interval=1h&startTime=1704067200000&endTime=1717200000000&limit=1000 (Caused by SSLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:1131)'))); 266)
+[2025-12-16T07:05:04.175+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-12-16T07:05:04.266+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-12-16T07:32:59.941+0000] {logging_mixin.py:188} INFO - Changing /opt/***/logs/dag_id=binance_klines_pipeline/run_id=scheduled__2025-12-15T00:00:00+00:00/task_id=fetch_and_transform permission to 509
+[2025-12-16T07:33:00.003+0000] {logging_mixin.py:188} INFO - Changing /opt/***/logs/dag_id=binance_klines_pipeline/run_id=scheduled__2025-12-15T00:00:00+00:00/task_id=fetch_and_transform permission to 509
+[2025-12-16T07:33:00.075+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: binance_klines_pipeline.fetch_and_transform scheduled__2025-12-15T00:00:00+00:00 [queued]>
+[2025-12-16T07:33:00.092+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: binance_klines_pipeline.fetch_and_transform scheduled__2025-12-15T00:00:00+00:00 [queued]>
+[2025-12-16T07:33:00.093+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 2
+[2025-12-16T07:33:00.121+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): fetch_and_transform> on 2025-12-15 00:00:00+00:00
+[2025-12-16T07:33:00.131+0000] {standard_task_runner.py:60} INFO - Started process 332 to run task
+[2025-12-16T07:33:00.140+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'binance_klines_pipeline', 'fetch_and_transform', 'scheduled__2025-12-15T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/dag.py', '--cfg-path', '/tmp/tmpxlhps8o1']
+[2025-12-16T07:33:00.145+0000] {standard_task_runner.py:88} INFO - Job 4: Subtask fetch_and_transform
+[2025-12-16T07:33:00.226+0000] {logging_mixin.py:188} INFO - Changing /opt/***/logs/dag_id=binance_klines_pipeline/run_id=scheduled__2025-12-15T00:00:00+00:00/task_id=fetch_and_transform permission to 509
+[2025-12-16T07:33:00.238+0000] {task_command.py:423} INFO - Running <TaskInstance: binance_klines_pipeline.fetch_and_transform scheduled__2025-12-15T00:00:00+00:00 [running]> on host 09d11c10e543
+[2025-12-16T07:33:00.650+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='binance_klines_pipeline' AIRFLOW_CTX_TASK_ID='fetch_and_transform' AIRFLOW_CTX_EXECUTION_DATE='2025-12-15T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-12-15T00:00:00+00:00'
+[2025-12-16T07:33:00.697+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag.py", line 17, in task_fetch_and_transform
+    raw = fetch(symbol, interval, start_time, end_time)
+  File "/opt/airflow/pipelines/fetch.py", line 44, in fetch
+    session.mount("https://", SSLAdapter(max_retries=retries))
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/adapters.py", line 155, in __init__
+    self.init_poolmanager(pool_connections, pool_maxsize, block=pool_block)
+  File "/opt/airflow/pipelines/fetch.py", line 28, in init_poolmanager
+    return super().init_poolmanager(*args, **kwargs)
+TypeError: init_poolmanager() got multiple values for argument 'maxsize'
+[2025-12-16T07:33:00.718+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=binance_klines_pipeline, task_id=fetch_and_transform, execution_date=20251215T000000, start_date=20251216T073300, end_date=20251216T073300
+[2025-12-16T07:33:00.733+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 4 for task fetch_and_transform (init_poolmanager() got multiple values for argument 'maxsize'; 332)
+[2025-12-16T07:33:00.770+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-12-16T07:33:00.798+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
