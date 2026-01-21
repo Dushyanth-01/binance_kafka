@@ -1,1 +1,15 @@
 .env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Airflow logs
+logs/
+
+# Environment variables
+.env
+
+# OS files
+.DS_Store
+Thumbs.db

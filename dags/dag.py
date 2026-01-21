@@ -35,7 +35,7 @@ with DAG(
     default_args=default_args,
     start_date=datetime(2024, 1, 1),
     schedule_interval="0 */2 * * *",
-    catchup=False,
+    catchup=True,
     tags=["binance", "crypto"],
 ) as dag:
 
