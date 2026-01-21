@@ -33,7 +33,7 @@ default_args = {
 with DAG(
     dag_id="binance_klines_pipeline",
     default_args=default_args,
-    start_date=datetime(2024, 1, 1),
+    start_date=datetime(2026, 1, 1),
     schedule_interval="0 */2 * * *",
     catchup=True,
     tags=["binance", "crypto"],
